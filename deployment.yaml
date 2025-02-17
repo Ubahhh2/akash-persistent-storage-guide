@@ -1,0 +1,27 @@
+version: "2.0"
+
+services:
+  web:
+    image: placeholder/web-app:latest # Placeholder image - IMPORTANT!
+    expose:
+      - port: 8080
+        as: 8080
+        to:
+          - global: true
+    volumes:
+      - data-volume:/app/data # Mount the volume "data-volume" to "/app/data"
+
+profiles:
+  compute:
+    web:
+      resources:
+        cpu:
+          units: 1.0
+        memory:
+          size: 512Mi
+        storage:
+          size: 512Mi
+
+volumes:
+  data-volume: # Define the volume
+    size: 1Gi # Size of the volume
